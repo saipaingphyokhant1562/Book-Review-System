@@ -5,10 +5,7 @@ include_once "controllers/registercontroller.php";
 
 $register_controller=new RegisterController();
 $getUserList=$register_controller->getUserList();
-// foreach ($getUserList as $user) {
-//     var_dump($user) ;
-//     # code...
-// }
+
 if(isset($_POST['signIn']))
 {
     $error_status=false;
@@ -39,11 +36,18 @@ if(isset($_POST['signIn']))
         $error_status=true;
     }
 
+    
+    $_SESSION['user_name']=$user_name;
+    $_SESSION['user_password']=$user_password;
     $_SESSION['user_email']=$user_email;
     if($error_status==false)
-    {
+        {
+            foreach ($getUserList as $user) {
+                if($user['email']==$user_email && $user['password']==$user_password){
+                    header("location:BookReviewSystem/index.php");
+                }
+            }
         // checkAlreadyExit Or Not
-        header("location:BookReviewSystem/index.php");
         
        
     }
@@ -89,7 +93,7 @@ if(isset($_POST['signIn']))
                             <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit"  name="signIn">Sign In</button>
                         </div>
 
-                        <a class="d-block text-center mt-2 small" href="#">Forgot Password</a>
+                        <a class="d-block text-center mt-2 small" href="register.php">If you don't have an account,Sign Up!</a>
 
                         <hr class="my-4">
                     </div>

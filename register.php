@@ -38,6 +38,7 @@ if(isset($_POST['register']))
     }
     
     $_SESSION['user_email']=$user_email;
+    $_SESSION['user_password']=$user_password;
     if(isset($_SESSION['user_email']))
     {
         header("location:index.php");
@@ -135,7 +136,7 @@ if(isset($_POST['register']))
                             <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit"  name="register">Register</button>
                         </div>
 
-                        <a class="d-block text-center mt-2 small" href="#">Have an account? Sign In</a>
+                        <a class="d-block text-center mt-2 small" href="login.php">Have an account? Sign In</a>
 
                         <hr class="my-4">
 
