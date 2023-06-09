@@ -29,19 +29,35 @@ if(isset($_POST['register']))
     }
 
     // create user_password
-    if(isset($_POST['user_password']))
+    if(isset($_POST['user_password1']))
     {
-        $user_password=$_POST['user_password'];
+        $user_password1=$_POST['user_password1'];
     }else{
         $error_status=true;
-        $error_password="Please Enter Your Password";
+        $error_password1="Please Enter Your Password";
     }
     
+    if(isset($_POST['user_password2']))
+    {
+        $user_password2=$_POST['user_password2'];
+    }else{
+        $error_status=true;
+        $error_password2="Please Enter Your Password";
+    }
+
+    if($user_password1==$user_password2)
+    {
+        $user_password=$_POST['user_password1'];
+    }else
+    {
+        echo "wrong Password";
+    }
+
     $_SESSION['user_email']=$user_email;
     $_SESSION['user_password']=$user_password;
     if(isset($_SESSION['user_email']))
     {
-        header("location:index.php");
+        header("location:BookReviewSystem/index.php");
     }
     echo "something";
     if($error_status==false)
@@ -123,8 +139,12 @@ if(isset($_POST['register']))
                         <hr>
 
                         <div class="form-floating mb-3">
-                            <input type="password" name="user_password"  class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
+                            <input type="password" name="user_password1"  class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Create Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" name="user_password2"  class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Re_Enter Password</label>
                         </div>
 
                         <!-- <div class="form-floating mb-3">
